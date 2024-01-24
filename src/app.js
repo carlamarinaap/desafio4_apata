@@ -14,7 +14,7 @@ const socketServer = new Server(httpServer);
 
 app.use(express.urlencoded({ extended: true }));
 
-const pm = new ProductManager("./productos.json");
+const pm = new ProductManager("src/productos.json");
 app.use(express.json()); // Esto devuelve un middleware
 app.use(routerProducts);
 app.use(routerCarts);
@@ -28,3 +28,14 @@ app.set("view engine", "handlebars");
 /* --------Test de vida del servidor---------- */
 app.get("/ping", (req, res) => res.status(200).send("Pong!"));
 /* ------------------------------------------- */
+
+socketServer.on("connection", (socket) => {
+  console.log("Nuevo cliente conectado");
+
+  socket.on("newProduct", async (data) => {
+    console.log(`Data desde app.js ${JSON.stringify(data)}`);
+    await pm.addProduct(data);
+    const products = await pm.getProducts();
+    socketServer.emit("card", products);
+  });
+});

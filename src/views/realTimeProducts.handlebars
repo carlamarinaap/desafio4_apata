@@ -13,32 +13,38 @@
 </div>
 
 <h1> Producto Nuevo </h1>
-<form method="post" action="/realTimeProducts" id="productForm">
+<form id="productForm">
   <div>
     <label for="title">Título</label>
-    <input type="text" name="title" id="title" />
+    <input type="text" name="title" value="Palita" id="title" />
   </div>
   <div>
     <label for="title">Descripción</label>
-    <input type="text" name="description" id="description" />
+    <input
+      type="text"
+      name="description"
+      value="Descripcion de la palita"
+      id="description"
+    />
   </div>
   <div>
     <label for="price">Precio</label>
-    <input type="number" name="price" id="price" />
+    <input type="number" name="price" value="2000" id="price" />
   </div>
   <div>
     <label for="code">Código</label>
-    <input type="text" name="code" id="code" />
+    <input type="text" name="code" value="7654jhgf" id="code" />
   </div>
   <div>
     <label for="stock">Stock</label>
-    <input type="text" name="stock" id="stock" />
+    <input type="text" name="stock" value="20" id="stock" />
   </div>
   <div>
     <label for="category">Categoría</label>
-    <input type="text" id="category" name="category" />
+    <input type="text" name="category" value="Juguetería" id="category" />
   </div>
-  <button type="submit">Agregar</button>
+  <button id="button">Agregar</button>
 </form>
 
-<script src="/js/index.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/socket.js"></script>
